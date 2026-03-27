@@ -50,3 +50,25 @@ engine = create_engine("sqlite:///gestao_escolar.db")
 Base.metadata.create_all(engine)
 
 Session = sessionmaker(bind=engine)
+
+#criar 
+def cadastrar_curso():
+    with Session() as session:
+        try:
+            nome_curso = input("Digite o nome do curso: ").capitalize()
+            curso = Curso(nome=nome_curso)
+
+            session.add(curso)
+            #salvar
+            session.commit()
+            print(f"Curso {nome_curso} cadastrado com sucesso!!")
+
+        except Exception as erro:
+            session.rollback()
+            print(f"Ocorreu um erro {erro}")
+
+#listar
+
+#atualizar
+
+#
